@@ -3,7 +3,7 @@ using namespace std;
 #include "functions.hpp"
 
 int main () {
-    Priority pr = Priority ("no problemo");
+    Priority pr = Priority ("no problem");
     pr.print_priority();        // pourquoi il m'engeule pas alors que pr existe pas vrmt ??
 
     Status st = Status ("in progress");

@@ -15,4 +15,6 @@ Status::Status (string status_in) { //on va tester si le status est dans la list
     };
 }
 
+Status::Status () {}
+
 void Status::print_status () {cout << "Status : " << sta << endl;}
