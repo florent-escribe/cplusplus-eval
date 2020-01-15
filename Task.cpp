@@ -3,10 +3,14 @@ using namespace std;
 #include "functions.hpp"
 #include <ctime>
 
+int Task::get_id () {return id;}
+string Task::get_title () {return title;}
+string Task::get_descr () {return descr;}
+
+
 
 //faire des arguments possiblement vides pour priorité/status...
-
-Task::Task (int id_in, string title_in, string descr_in) {
+Task::Task (int id_in, string title_in, string descr_in) {//les dates de création/fin sont initialisées à auj par défaut à la création
     id=id_in;
     title=title_in;
     descr=descr_in;
@@ -22,12 +26,13 @@ void Task::print_task () {
     cout << endl;
 }
 
+void Task::change_start_date (Date d) {date_creation=d;}
 void Task::set_end_date (Date date) {date_end = date;}    // faudra vrmt faire qqchose pour uniformiser les dates
 
-void Task::change_start_date (Date d) {date_creation.set_date(d);}
-
+void Task::change_descr (string d) {descr=d;}
+void Task::change_status (Status s) {status=s;}
 void Task::change_progress (float pc) {progress = pc;}
+void Task::change_priority (Priority prio) {priority=prio;}
 
-//void Task::set_end_date (Date d) {date_end.set_date(d);}
-
-void Task::change_status (Status s) {status.set_status(s);}
+void Task::print_date_creation () {date_creation.print_date();}
+void Task::print_end_date () {date_end.print_date();}

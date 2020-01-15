@@ -1,0 +1,2 @@
+on écrit les tâches dans task_repository sous la forme id ; title ; descr ; date_creation ; date_end ; priority ; status ; progress ;
+com ; sous-tâches

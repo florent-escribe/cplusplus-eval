@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
 using namespace std;
 
 //ALLER VOIR LE DISCOURSE, YA PT DES TRUCS
@@ -46,6 +49,7 @@ class Task {
     string title;
     string descr;    
     public :
+//        string descr;
         Date date_creation; //elle est initialisée tt seule à auj grace à mon constructeur vide
         Date date_end;  //pb : elle est aussi initialisée à aujourd'hui
         Priority priority;
@@ -55,17 +59,44 @@ class Task {
         //pour les suivants, grand array avant de savoir faire des strings
         string* com;
         Task* sub_tasks;
-        void change_start_date (Date d);
-        void set_end_date (Date d);
-        void change_status (Status s);
-        void change_progress (float pc);
-        void change_priority (Priority prio);
-        void add_commentary ();
-        void add_sub_task (Task subtask);
-        void print_date ();
-        
+
+        int get_id ();
+        string get_title ();
+        string get_descr ();
+
         Task (int id_in, string title_in, string descr_in);
         void print_task ();
 
+        void change_start_date (Date d);
+        void set_end_date (Date d);
+
+        void change_descr (string d);
+
+        void change_status (Status s);
+
+        void change_progress (float pc);
+
+        void change_priority (Priority prio);
+
+        void add_commentary ();
+
+        void add_sub_task (Task subtask);
+
+        void print_date_creation ();
+        void print_end_date ();
 };
 
+vector<string> split(const string& s, char delimiter)
+//Fonction retournant un vector<string> a partir d'un string en spératant a chaque caractère delimiter
+{
+   vector<string> tokens;
+   string token;
+   istringstream tokenStream(s);
+   while (getline(tokenStream, token, delimiter))
+   {
+      tokens.push_back(token);
+   }
+   return tokens;
+};
+
+void write_task (Task task) {};
