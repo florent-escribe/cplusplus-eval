@@ -18,3 +18,5 @@ Priority::Priority (string priority_in) { //on va tester si la priorité est dan
 Priority::Priority () {}
 
 void Priority::print_priority () {cout << "Priority : " << prio << endl;}
+
+string Priority::write_priority () {return prio;}

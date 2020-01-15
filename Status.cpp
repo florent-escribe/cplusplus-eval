@@ -20,3 +20,5 @@ Status::Status () {}
 void Status::print_status () {cout << "Status : " << sta << endl;}
 string Status::get_status () {return sta;}
 void Status::set_status (Status s) {sta=s.get_status();}
+
+string Status::write_status () {return sta;}

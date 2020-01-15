@@ -1,2 +1,20 @@
 on écrit les tâches dans task_repository sous la forme id ; title ; descr ; date_creation ; date_end ; priority ; status ; progress ;
 com ; sous-tâches
+
+arguments d'entrée : indices
+0 : ack
+1 : create ; change ; display ; list ; ajouter
+
+1 create :
+    2 : --title
+    3 : "le titre"
+    optionnel
+    4 : --description
+    5 : "la description"
+
+1 change :
+    tous les attributs d'une task
+    2 : --attributs
+    3 : "date de début" ; "date de fin" ; "description" ; "status" ; "progrès" ; "priorité"
+    4 : --nouvel_attribut
+    5 : dd/mm/yyyy ; "la description / le status / la priorité" ; "x%"

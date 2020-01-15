@@ -19,6 +19,7 @@ class Date {
         int give_month ();
         int give_year ();
         void set_date (Date d);
+        string write_date ();
 };
 
 
@@ -32,6 +33,7 @@ class Status { //attention, il faudra pouvoir changer sta depuis task, donc soit
         void print_status ();
         string get_status ();
         void set_status (Status s);
+        string write_status ();
 };
 
 class Priority {  //attention, il faudra pouvoir changer sta depuis task, donc soit en public, soit donner l'autorisation
@@ -41,6 +43,7 @@ class Priority {  //attention, il faudra pouvoir changer sta depuis task, donc s
         Priority (string priority_in);  //potentiellement inutile
         Priority ();
         void print_priority ();
+        string write_priority ();
 };
 
 
@@ -86,6 +89,7 @@ class Task {
         void print_end_date ();
 };
 
+/*
 vector<string> split(const string& s, char delimiter)
 //Fonction retournant un vector<string> a partir d'un string en spératant a chaque caractère delimiter
 {
@@ -98,5 +102,10 @@ vector<string> split(const string& s, char delimiter)
    }
    return tokens;
 };
+*/
 
-void write_task (Task task) {};
+//dans le fichier "fichier_texte.cpp"
+
+void write_task (Task task);
+
+int get_id ();  //donne l'id de la prochaine task, cad le nbr de lignes +1

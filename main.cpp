@@ -7,15 +7,19 @@ using namespace std;
 
 
 
-int main () {
+int main (int argc, char* argv []) {
 
+    //faire une fonction par niveau : la première regarde que argv[1], la 2eme [2]...
 
+    if ( ((string)argv[1]) =="create") {
+        //il faut récup l'identifiant, càd le nbr de ligne du .txt +1
+        Task task = Task (get_id(),argv[3],argv[5]);
+        write_task(task);
+    };
 
+    if ( ((string)argv[1]) =="change") {
 
-
-
-
-
+    };
 
 /*
     Priority pr = Priority ("no problem");

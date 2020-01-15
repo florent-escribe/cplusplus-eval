@@ -29,3 +29,7 @@ void Date::set_date (Date d) {
     month=d.give_month();
     year=d.give_year();
 }
+
+string Date::write_date () {
+    return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
+}
