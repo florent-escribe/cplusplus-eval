@@ -10,6 +10,8 @@ int main () {
     st.print_status();
 
     Task ta = Task (01, "premiere tache", "test n°1");
+    ta.set_end_date(Date (25,1,2020));
+
     ta.print_task();
 
 }

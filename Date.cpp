@@ -19,3 +19,13 @@ Date::Date (int d, int m, int y) {
 void Date::print_date () {
     cout << day << "/" << month << "/" << year << endl;
 }
+
+int Date::give_day () {return day;}
+int Date::give_month () {return month;}
+int Date::give_year () {return year;}
+
+void Date::set_date (Date d) {
+    day=d.give_day();
+    month=d.give_month();
+    year=d.give_year();
+}
