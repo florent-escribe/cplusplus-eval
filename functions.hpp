@@ -67,7 +67,7 @@ class Task {
         string get_title ();
         string get_descr ();
 
-        Task (int id_in, string title_in, string descr_in);
+        Task (int id_in, string title_in, string descr_in, Status sta = Status(), Priority prio = Priority());
         void print_task ();
 
         void change_start_date (Date d);

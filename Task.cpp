@@ -10,10 +10,21 @@ string Task::get_descr () {return descr;}
 
 
 //faire des arguments possiblement vides pour priorité/status...
-Task::Task (int id_in, string title_in, string descr_in) {//les dates de création/fin sont initialisées à auj par défaut à la création
+/*Task::Task (int id_in, string title_in, string descr_in) {//les dates de création/fin sont initialisées à auj par défaut à la création
     id=id_in;
     title=title_in;
     descr=descr_in;
+    progress=0;
+}*/
+
+
+//Je rajoute des arg potentiellement vides
+Task::Task (int id_in, string title_in, string descr_in, Status sta, Priority prio) {//les dates de création/fin sont initialisées à auj par défaut à la création
+    id=id_in;
+    title=title_in;
+    descr=descr_in;
+    status=sta;
+    priority=prio;
     progress=0;
 }
 

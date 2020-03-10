@@ -11,7 +11,7 @@ Priority::Priority (string priority_in) { //on va tester si la priorité est dan
         else {i+=1;};
     };
     if (i==5) {
-        cout << "\"" << priority_in << "\" is not a official priority" << endl;
+        cout << "\"" << priority_in << "\" is not an official priority" << endl;
     };
 }
 

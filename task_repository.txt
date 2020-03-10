@@ -1,3 +1,18 @@
 1;titre;descrippp;9/3/2020;9/3/2020;;;0
-2;titre;descrippp;9/3/2020;9/3/2020;;;0
-3;titre;descrippp;10/3/2020;10/3/2020;;;0
+2;avec_cin;test_cin;10/3/2020;10/3/2020;;;0
+3;d;d;10/3/2020;10/3/2020;;;0
+4;flo;rent;10/3/2020;10/3/2020;;;0
+5;titulo;descr;10/3/2020;10/3/2020;;;0
+6;tit;des;10/3/2020;10/3/2020;urgent;boring;0
+7;titttre;desss;10/3/2020;10/3/2020;;boring;0
+8;ttt;dd;10/3/2020;10/3/2020;;;0
+9;titree;desssss;10/3/2020;10/3/2020;;;0
+10;tatre;dascr;10/3/2020;10/3/2020;urgent;boring;0
+11;trez;az'fq;10/3/2020;10/3/2020;;;0
+12;fgresd;rgesthrdy;10/3/2020;10/3/2020;;;0
+13;;descr;10/3/2020;10/3/2020;urgent;boring;0
+14;titre trier;desc;10/3/2020;10/3/2020;urgent;boring;0
+15;test test;d;10/3/2020;10/3/2020;;;0
+16;une belle tâche;avec des espaces;10/3/2020;10/3/2020;think about it;;0
+17;cette fois;pour de bon;10/3/2020;10/3/2020;think about it;in progress;0
+18;t;;10/3/2020;10/3/2020;;in progress;0
