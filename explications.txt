@@ -8,9 +8,14 @@ arguments d'entrée : indices
 1 create :
     2 : --title
     3 : "le titre"
-    optionnel
+    
+    optionnel		Pour savoir dans quel cas on est, on utilise argc qui va donner 6 8 ou 10
     4 : --description
     5 : "la description"
+    6 : --priorité
+    7 : "la priorité"
+    8 : --statut
+    9 : "le statut"
 
 1 change :
     tous les attributs d'une task
@@ -18,3 +23,6 @@ arguments d'entrée : indices
     3 : "date de début" ; "date de fin" ; "description" ; "status" ; "progrès" ; "priorité"
     4 : --nouvel_attribut
     5 : dd/mm/yyyy ; "la description / le status / la priorité" ; "x%"
+
+
+OU ALORS je récupère ce qu'ils veulent faire étape par étape avec des cin

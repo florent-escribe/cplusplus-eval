@@ -3,7 +3,7 @@ using namespace std;
 #include "functions.hpp"
 #include <ctime>
 
-int Task::get_id () {return id;}
+int Task::get_task_id () {return id;}
 string Task::get_title () {return title;}
 string Task::get_descr () {return descr;}
 

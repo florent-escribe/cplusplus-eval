@@ -18,7 +18,9 @@ int main (int argc, char* argv []) {
     };
 
     if ( ((string)argv[1]) =="change") {
-
+        if ( ((string)argv[3]) =="date de début") {
+            
+        };        
     };
 
 /*

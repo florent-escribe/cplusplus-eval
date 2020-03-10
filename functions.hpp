@@ -63,7 +63,7 @@ class Task {
         string* com;
         Task* sub_tasks;
 
-        int get_id ();
+        int get_task_id ();
         string get_title ();
         string get_descr ();
 
