@@ -109,3 +109,14 @@ vector<string> split(const string& s, char delimiter)
 void write_task (Task task);
 
 int get_id ();  //donne l'id de la prochaine task, cad le nbr de lignes +1
+
+
+//Dans User_interface :
+string demanderAction ();
+string demanderTitre ();
+string demanderDescription ();
+Priority demanderPriority ();
+Status demanderStatus ();
+int demanderId ();
+string demanderModifiable ();
+Date demanderDate ();

@@ -6,71 +6,26 @@ using namespace std;
 #include <vector>
 
 
-string demanderAction () {
-    cout << "Quelle action désirez vous accomplir ? ";
-    string action;
-    getline(cin,action);
-    cout<<endl;
-    return action;
-}
-
-/*string demanderTitre () {
-    cout << "Titre : ";
-    string titre;
-    cin >> titre;
-    cout<<endl;
-    return titre;
-}*/
-
-string demanderTitre () {
-    cout << "Titre : ";
-    string titre;
-    getline(cin,titre);
-    cout<<endl;
-    return titre;
-}
-
-string demanderDescription () {
-    cout << "Description : ";
-    string description;
-    getline(cin,description);
-    cout<<endl;
-    return description;
-}
-
-Priority demanderPriority () {
-    cout << "Priorité : ";
-    string prio ("blabla");
-    getline(cin,prio);
-    cout<<endl;
-    return Priority(prio);
-}
-/*Priority demanderPriority () {
-    cout << "Priorité : ";
-    string prio ("blabla");
-    cout << prio;
-    getline(cin,prio);
-    cout<< prio << endl;
-    return Priority(prio);
-}*/
-
-Status demanderStatus () {
-    cout << "Status : ";
-    string status;
-    getline(cin,status);
-    cout<<endl;
-    return Status(status);
-}
-
 int main () {
     string action = demanderAction();
     if ( action =="create") {
-    string titre = demanderTitre();
-    string description = demanderDescription();
-    Priority prio = demanderPriority();
-    Status sta = demanderStatus();
-    Task task = Task (get_id(),titre,description,sta,prio);
-    write_task(task);
+        string titre = demanderTitre();
+        string description = demanderDescription();
+        Priority prio = demanderPriority();
+        Status sta = demanderStatus();
+        Task task = Task (get_id(),titre,description,sta,prio);
+        write_task(task);
+    };
+    if ( action == "change" ){
+        int id = demanderId();
+        //string modifiable [4] = {"date de fin", "priorité", "statut", "progrès"};
+        string element = demanderModifiable();
+
+        if (element=="date de fin") {
+            Date d = demanderDate();
+        }
+        
+
     }
 }
 /*  TESTS DE CREATION DE MES CLASSES

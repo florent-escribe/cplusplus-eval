@@ -26,3 +26,24 @@ arguments d'entrée : indices
 
 
 OU ALORS je récupère ce qu'ils veulent faire étape par étape avec des cin
+CEST BEAUCOUP MIEUX !!!! Nouvelle structure :
+
+1. Demande de l'action
+	
+	Si "create":
+		demande du titre, de la descript, du status, de la priorité, et on crée la tâche		IL MANQUE LES SS-TACHES !!!!!
+	Si "change":
+		demander l'id de la tâche à changer
+		demander l'élément à changer : date fin, priorité, status, progression -> un tableau avec ces 4 là, 
+		un for qui teste le getline par rapport au tableau	FAIRE MSG DERREUR SI LINPUT EST PAS UN ELEMENT OFFICIEL
+		demander la nouvelle valeur
+		modifier la ligne en conséquence
+
+
+
+
+
+
+
+
+
