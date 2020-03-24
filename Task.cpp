@@ -19,13 +19,17 @@ string Task::get_descr () {return descr;}
 
 
 //Je rajoute des arg potentiellement vides
-Task::Task (int id_in, string title_in, string descr_in, Status sta, Priority prio) {//les dates de création/fin sont initialisées à auj par défaut à la création
+Task::Task (int id_in, string title_in, string descr_in, Date date_debut, Date date_fin, Priority prio, Status sta, float prog) {
+    //les dates de création/fin sont initialisées à auj par défaut à la création
     id=id_in;
     title=title_in;
     descr=descr_in;
     status=sta;
     priority=prio;
     progress=0;
+    date_creation=date_debut;
+    date_end=date_fin;
+    progress=prog;
 }
 
 void Task::print_task () {
@@ -34,6 +38,9 @@ void Task::print_task () {
     date_creation.print_date();
     cout << "Date de fin : ";
     date_end.print_date();
+    priority.print_priority();
+    status.print_status();
+    cout << "Progress : " << progress;
     cout << endl;
 }
 

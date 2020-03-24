@@ -4,9 +4,8 @@
 #include <vector>
 using namespace std;
 
-//ALLER VOIR LE DISCOURSE, YA PT DES TRUCS
 
-//pour l'instant je vais juste récup la date à l'instant de création. ça serait cool de faire JJ/MM/YYYY a la fin
+// Dans Date.cpp
 class Date {
     int day;
     int month;
@@ -22,6 +21,7 @@ class Date {
         string write_date ();
 };
 
+Date text_to_date (string date);
 
 
 class Status { //attention, il faudra pouvoir changer sta depuis task, donc soit en public, soit donner l'autorisation
@@ -52,7 +52,6 @@ class Task {
     string title;
     string descr;    
     public :
-//        string descr;
         Date date_creation; //elle est initialisée tt seule à auj grace à mon constructeur vide
         Date date_end;  //pb : elle est aussi initialisée à aujourd'hui
         Priority priority;
@@ -67,24 +66,23 @@ class Task {
         string get_title ();
         string get_descr ();
 
-        Task (int id_in, string title_in, string descr_in, Status sta = Status(), Priority prio = Priority());
-        void print_task ();
+        Task (int id_in, string title_in, string descr_in, Date date_debut = Date(), Date date_fin = Date(),
+              Priority prio = Priority(), Status sta = Status(), float prog = 0.);
+
+
 
         void change_start_date (Date d);
         void set_end_date (Date d);
 
         void change_descr (string d);
-
         void change_status (Status s);
-
         void change_progress (float pc);
-
         void change_priority (Priority prio);
 
         void add_commentary ();
-
         void add_sub_task (Task subtask);
 
+        void print_task ();
         void print_date_creation ();
         void print_end_date ();
 };
@@ -107,8 +105,8 @@ vector<string> split(const string& s, char delimiter)
 //dans le fichier "fichier_texte.cpp"
 
 void write_task (Task task);
-
 int get_id ();  //donne l'id de la prochaine task, cad le nbr de lignes +1
+Task text_to_task (string text);
 
 
 //Dans User_interface :

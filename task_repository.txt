@@ -1,3 +1,4 @@
-1;titre;fshkfs;11/3/2020;11/3/2020;urgent;open;0
-2;t cool;surtout quand ça marche;22/3/2020;22/3/2020;no problem;open;0
-3;ttt;ddd;22/3/2020;22/3/2020;;open;0
+1;titre;desc;22/3/2020;22/3/2020;think about it;closed;0
+2;aaa;bbb;24/3/2020;24/3/2020;no problem;interesting;0
+3;floflo;scribe;24/3/2020;24/3/2020;urgent;in progress;0
+4;coucou;yolo;24/3/2020;24/3/2020;kinda pressing but ok;closed;0

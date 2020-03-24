@@ -1,5 +1,5 @@
-on écrit les tâches dans task_repository sous la forme id ; title ; descr ; date_creation ; date_end ; priority ; status ; progress ;
-com ; sous-tâches
+on écrit les tâches dans task_repository sous la forme 0_id ; 1_title ; 2_descr ; 3_date_creation ; 4_date_end ; 5_priority ;
+						       6_status ; 7_progress ; 8_com ; 9_sous-tâches
 
 arguments d'entrée : indices
 0 : ack
@@ -29,20 +29,31 @@ OU ALORS je récupère ce qu'ils veulent faire étape par étape avec des cin
 CEST BEAUCOUP MIEUX !!!! Nouvelle structure :
 
 1. Demande de l'action
+
+	Pour tous les demandeX qui renvoient un string, en faire un seul qui prend en argument la question en string
 	
 	Si "create":
 		demande du titre, de la descript, du status, de la priorité, et on crée la tâche		IL MANQUE LES SS-TACHES !!!!!
 	Si "change":
-		demander l'id de la tâche à changer
-		demander l'élément à changer : date fin, priorité, status, progression -> un tableau avec ces 4 là, 
-		un for qui teste le getline par rapport au tableau	FAIRE MSG DERREUR SI LINPUT EST PAS UN ELEMENT OFFICIEL
+		demander l'id de la tâche à changer	JE GERE PAS ENCORE LE CAS OU ELLE A ETE SUPPRIMEE
+		demander l'élément à changer : date fin, priorité, status, progression ->
+		
+		(un tableau avec ces 4 là, un for qui teste le getline par rapport au tableau,
+		pas sûr que ça aide vrmt, c'est juste si on arrive à faire correspondre l'indice du tableau avec celui du repository)
+		
+		FAIRE MSG DERREUR SI LINPUT EST PAS UN ELEMENT OFFICIEL
 		demander la nouvelle valeur
-		modifier la ligne en conséquence
+		modifier la ligne en conséquence -> se mettre au bon endroit ; supprimer l'ancienne valeur ; mettre la nouvelle
 
+ATTENTION quand je rajouterai com et ss taches, faudra faire gaffe aux longueurs des tabl dans le convertisseur txt/task
 
+A plusieurs reprises, j'ai besoin de découper une string contenant plusieurs éléments séparés par un certain marqueur.
+Pour ça, je parcours la string et stocke toutes les positions de ce marqueur dans un tableau (je connais le nbr exact de marqueur à
+chaque fois), puis j'extrais chaque substring avec substr()
 
-
-
+A RAJOUTER :
+les comms et les sous taches -> si on fait des tableaux, faire gaffe à avoir des marqueurs différents des séparateurs d'attributs
+				changer les nombres d'attributs dans les convertisseurs txt/task
 
 
 

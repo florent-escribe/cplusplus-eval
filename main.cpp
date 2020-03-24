@@ -13,7 +13,7 @@ int main () {
         string description = demanderDescription();
         Priority prio = demanderPriority();
         Status sta = demanderStatus();
-        Task task = Task (get_id(),titre,description,sta,prio);
+        Task task = Task (get_id(),titre,description,Date(),Date(),prio,sta);   //METTRE LES DATES A LA FIN DANS LES ARGS pour pouvoir ne pas les écrire ici
         write_task(task);
     };
     if ( action == "change" ){
@@ -23,10 +23,38 @@ int main () {
 
         if (element=="date de fin") {
             Date d = demanderDate();
-        }
-        
 
+            //ofstream flux_new_repository("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/new_repository.txt");
+            ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");  //Ouverture d'un fichier en lecture
+            string ligne;
+            getline(repository_in, ligne);
+            while (ligne[0]-'0' != id) {        // ligne[0]-'0' permet de convertir le premier terme en int
+                //flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
+                getline(repository_in, ligne);
+            };
+            // Je suis mtn a la bonne ligne
+            // Mtn, je veux pouvoir modifier l'élément d'indice 4 dans une découpe selon ";"
+            Task task_to_change = text_to_task(ligne);
+            task_to_change.date_end=d;
+            write_task(task_to_change);
+      
+        }
     }
+    if (action=="test"){
+        string const nom_repository("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");
+        ifstream repository_in("task_repository.txt");  //Ouverture d'un fichier en lecture
+        string ligne;
+        getline(repository_in, ligne);
+        cout<<ligne<<endl;
+        cout<<endl;
+        Task ta = text_to_task(ligne);
+        cout<<endl;
+        ta.print_task();
+        
+        cout<<endl;
+        cout<<"on arrive au bout"<<endl;      
+    }
+    
 }
 /*  TESTS DE CREATION DE MES CLASSES
     Priority pr = Priority ("no problem");
