@@ -28,9 +28,11 @@ arguments d'entrée : indices
 OU ALORS je récupère ce qu'ils veulent faire étape par étape avec des cin
 CEST BEAUCOUP MIEUX !!!! Nouvelle structure :
 
+ATTENTION: se débrouiller pour qu'il ny ait pas de ";" dans les requêtes des gens
+
 1. Demande de l'action
 
-	Pour tous les demandeX qui renvoient un string, en faire un seul qui prend en argument la question en string
+	amélioration : Pour tous les demandeX() qui renvoient un string, en faire un seul qui prend en argument la question en string
 	
 	Si "create":
 		demande du titre, de la descript, du status, de la priorité, et on crée la tâche		IL MANQUE LES SS-TACHES !!!!!
@@ -41,11 +43,20 @@ CEST BEAUCOUP MIEUX !!!! Nouvelle structure :
 		(un tableau avec ces 4 là, un for qui teste le getline par rapport au tableau,
 		pas sûr que ça aide vrmt, c'est juste si on arrive à faire correspondre l'indice du tableau avec celui du repository)
 		
-		FAIRE MSG DERREUR SI LINPUT EST PAS UN ELEMENT OFFICIEL
+		FAIRE MSG DERREUR SI LINPUT EST PAS UN ELEMENT OFFICIEL avec un while jusquà ce que ça soit bon
 		demander la nouvelle valeur
 		modifier la ligne en conséquence -> se mettre au bon endroit ; supprimer l'ancienne valeur ; mettre la nouvelle
+	si "delete":
+		demander l'identifiant
+		la supprimer (comme les fct change sauf quon réécrit pas la ligne en question)
+	si "show":PAS ENCORE FAIT
+		demander d'abord l'attribut selon lequel on veut afficher
+		demander la valeur de cet attribut
+		lire le fichier, à chaque ligne, créer la tache, tester la valeur de l'attribut, la print ou non
+
 
 ATTENTION quand je rajouterai com et ss taches, faudra faire gaffe aux longueurs des tabl dans le convertisseur txt/task
+
 
 A plusieurs reprises, j'ai besoin de découper une string contenant plusieurs éléments séparés par un certain marqueur.
 Pour ça, je parcours la string et stocke toutes les positions de ce marqueur dans un tableau (je connais le nbr exact de marqueur à
@@ -55,6 +66,9 @@ A RAJOUTER :
 les comms et les sous taches -> si on fait des tableaux, faire gaffe à avoir des marqueurs différents des séparateurs d'attributs
 				changer les nombres d'attributs dans les convertisseurs txt/task
 
+
+Pour la partie change, demander si cest possible de faire un tableau avec des instructions, comme ça la partie à modifier correspond à un
+entier qui indique dans le tableau l'action a effectuer. (les mettre en string et les dé-stringer ?)
 
 
 

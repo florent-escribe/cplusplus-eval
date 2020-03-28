@@ -1,5 +1,0 @@
-1;titre;desc;22/3/2020;22/3/2020;think about it;closed;0
-2;aaa;bbb;24/3/2020;24/3/2020;no problem;interesting;0
-3;floflo;scribe;24/3/2020;5/11/1999;urgent;in progress;0
-5;la tache 5;la cinquieme;24/3/2020;24/3/2020;no problem;open;0
-5;test fin;deux repo;24/3/2020;24/3/2020;;;0

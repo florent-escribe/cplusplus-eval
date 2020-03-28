@@ -6,6 +6,7 @@ using namespace std;
 #include <vector>
 #include <sstream>
 
+/*
 string demanderAction () {
     cout << "Quelle action désirez vous accomplir ? ";
     string action;
@@ -46,6 +47,23 @@ Status demanderStatus () {
     return Status(status);
 }
 
+string demanderModifiable () {
+    cout << "Element à modifier : ";
+    string modif;
+    getline(cin,modif);
+    cout<<endl;
+    return modif;
+}
+*/
+
+string demanderGeneral (string question) {
+    cout << question ;
+    string reponse;
+    getline(cin,reponse);
+    cout<<endl;
+    return reponse;
+}
+
 int demanderId () {
     cout << "Identifiant de la tâche à modifier : ";
     int id;
@@ -55,20 +73,13 @@ int demanderId () {
     return id;
 }
 
-string demanderModifiable () {
-    cout << "Element à modifier : ";
-    string modif;
-    getline(cin,modif);
-    cout<<endl;
-    return modif;
-}
 
 Date demanderDate () {
     cout << "Date de fin, format DD MM YYYY : ";
     string date;
     getline(cin,date);
     cout<<endl;
-    auto date_segment = istringstream{date};
+    auto date_segment = istringstream{date};    //ça découpe une string selon les espaces
     int d;
     int m;
     int y;
@@ -77,3 +88,4 @@ Date demanderDate () {
     date_segment>>y;
     return Date(d,m,y);
 }
+

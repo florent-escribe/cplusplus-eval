@@ -56,7 +56,7 @@ class Task {
         Date date_end;  //pb : elle est aussi initialisée à aujourd'hui
         Priority priority;
         Status status;
-        float progress;
+        int progress;
 
         //pour les suivants, grand array avant de savoir faire des strings
         string* com;
@@ -67,12 +67,13 @@ class Task {
         string get_descr ();
 
         Task (int id_in, string title_in, string descr_in, Date date_debut = Date(), Date date_fin = Date(),
-              Priority prio = Priority(), Status sta = Status(), float prog = 0.);
+              Priority prio = Priority(), Status sta = Status(), int prog = 0);
+        string write ();
 
-
+        //tout ce qui suit est idiot, completement inutile, on peut juste affecter directement
 
         void change_start_date (Date d);
-        void set_end_date (Date d);
+        void set_end_date (Date d);             
 
         void change_descr (string d);
         void change_status (Status s);
@@ -105,16 +106,22 @@ vector<string> split(const string& s, char delimiter)
 //dans le fichier "fichier_texte.cpp"
 
 void write_task (Task task);
-int get_id ();  //donne l'id de la prochaine task, cad le nbr de lignes +1
+int get_id ();  //donne l'id de la prochaine task
 Task text_to_task (string text);
-
+void change_end_date (int id);
+void change_priority (int id);
+void change_status (int id);
+void change_progress (int id);
+void delete_task (int id);
 
 //Dans User_interface :
-string demanderAction ();
+/*string demanderAction ();
 string demanderTitre ();
 string demanderDescription ();
 Priority demanderPriority ();
 Status demanderStatus ();
+string demanderModifiable ();*/
+string demanderGeneral (string question);
 int demanderId ();
-string demanderModifiable ();
 Date demanderDate ();
+
