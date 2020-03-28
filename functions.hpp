@@ -113,6 +113,7 @@ void change_priority (int id);
 void change_status (int id);
 void change_progress (int id);
 void delete_task (int id);
+bool exist_task (int id);
 
 //Dans User_interface :
 /*string demanderAction ();

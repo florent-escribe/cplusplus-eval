@@ -1,6 +1,9 @@
 on écrit les tâches dans task_repository sous la forme 0_id ; 1_title ; 2_descr ; 3_date_creation ; 4_date_end ; 5_priority ;
 						       6_status ; 7_progress ; 8_com ; 9_sous-tâches
 
+Pour les sous-tâches, je fais une string où les identifiants sont séparés par des espaces : "id1 id2 id3"
+
+
 arguments d'entrée : indices
 0 : ack
 1 : create ; change ; display ; list ; ajouter
@@ -16,6 +19,7 @@ arguments d'entrée : indices
     7 : "la priorité"
     8 : --statut
     9 : "le statut"
+    RAJOUTER COM ET SS TACHES
 
 1 change :
     tous les attributs d'une task
@@ -37,7 +41,8 @@ ATTENTION: se débrouiller pour qu'il ny ait pas de ";" dans les requêtes des g
 	Si "create":
 		demande du titre, de la descript, du status, de la priorité, et on crée la tâche		IL MANQUE LES SS-TACHES !!!!!
 	Si "change":
-		demander l'id de la tâche à changer	JE GERE PAS ENCORE LE CAS OU ELLE A ETE SUPPRIMEE
+		demander l'id de la tâche à changer
+		tester l'existence de cette tâche, si oui on avance, sinon msg d'erreur
 		demander l'élément à changer : date fin, priorité, status, progression ->
 		
 		(un tableau avec ces 4 là, un for qui teste le getline par rapport au tableau,
@@ -48,6 +53,7 @@ ATTENTION: se débrouiller pour qu'il ny ait pas de ";" dans les requêtes des g
 		modifier la ligne en conséquence -> se mettre au bon endroit ; supprimer l'ancienne valeur ; mettre la nouvelle
 	si "delete":
 		demander l'identifiant
+		tester l'existence de cette tâche, si oui on avance, sinon msg d'erreur
 		la supprimer (comme les fct change sauf quon réécrit pas la ligne en question)
 	si "show":PAS ENCORE FAIT
 		demander d'abord l'attribut selon lequel on veut afficher

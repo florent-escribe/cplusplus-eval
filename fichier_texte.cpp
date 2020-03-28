@@ -211,3 +211,14 @@ void delete_task (int id) {
     rename(oldname,newname);
     cout << "La tâche " << id << " a bien été supprimée." << endl;
 }
+
+bool exist_task (int id) {                          //true si existe, false sinon
+    ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
+    string ligne;
+    while (getline(repository_in, ligne)) {         //je lis tout le fichier
+        if (ligne[0]-'0' == id) {                   //ça convertit un char en int
+            return true;
+        }
+    }
+    return false;
+}
