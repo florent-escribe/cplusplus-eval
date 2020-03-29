@@ -14,7 +14,7 @@ void write_task (Task task) {
     if(flux_repository){
         flux_repository << task.get_task_id() <<";"<< task.get_title() <<";"<< task.get_descr() <<";"<< task.date_creation.write_date()
         <<";"<< task.date_end.write_date() <<";"<< task.priority.write_priority() <<";"<< task.status.write_status()
-        <<";"<< task.progress << ";" << task.sub_task << endl;//RESTE LES COMS ET SSTACHES
+        <<";"<< task.progress << ";" << task.sub_task << ";" << task.comments << endl;
     }
     else{
       cout << "ERREUR: Impossible d'ouvrir le fichier texte." << endl;
@@ -85,10 +85,10 @@ Task text_to_task (string text) {   //text est une ligne du repository
 Task text_to_task (string text) {   //text est une ligne du repository
     
     int len = text.length();                   //longueur de la string
-    int pos_pt_vrg [8];                     // tableau de 8 entiers : les positions des ";" ATTENTION yen aura 9 a la fin
+    int pos_pt_vrg [9];                     // tableau de 8 entiers : les positions des ";" ATTENTION yen aura 9 a la fin
     int compt_pt_vrg = 0;                   // compteur du nbr de ";" parcourus
     int pos_text = 0;                       // position dans text
-    while (compt_pt_vrg < 8) {
+    while (compt_pt_vrg < 9) {
         if (text[pos_text]==';') {
             pos_pt_vrg[compt_pt_vrg]=pos_text;
             compt_pt_vrg+=1;
@@ -96,15 +96,15 @@ Task text_to_task (string text) {   //text est une ligne du repository
         pos_text+=1;
     }
 
-    string attributs [9];                   // on stocke les att ss forme de string. ATTENTION : pour l'instant que 9 élé, ça sera 10 avec les com
+    string attributs [10];                   // on stocke les att ss forme de string. ATTENTION : pour l'instant que 9 élé, ça sera 10 avec les com
     attributs[0]=text.substr(0,pos_pt_vrg[0]);
-    for (int i=1; i<8; i+=1) {              //remplissage de attributs
+    for (int i=1; i<9; i+=1) {              //remplissage de attributs
         attributs[i]= text.substr(pos_pt_vrg[i-1]+1,pos_pt_vrg[i]-pos_pt_vrg[i-1]-1);
     }
-    attributs[8] = text.substr(pos_pt_vrg[7]+1,len-1-pos_pt_vrg[7]);    //pas de pb si pas de ss taches, car ça fait une longueur 0 dans le substr
+    attributs[9] = text.substr(pos_pt_vrg[8]+1,len-1-pos_pt_vrg[8]);    //pas de pb si pas de ss taches, car ça fait une longueur 0 dans le substr
 
     Task task = Task(stoi(attributs[0]), attributs[1], attributs[2], text_to_date(attributs[3]), text_to_date(attributs[4]),
-                     Priority(attributs[5]), Status(attributs[6]), stoi(attributs[7]), attributs[8]);
+                     Priority(attributs[5]), Status(attributs[6]), stoi(attributs[7]), attributs[8], attributs[9]);
     return task;
 }
 
@@ -296,6 +296,78 @@ void change_sub_task (int id) {
         rename(oldname,newname);*/
     };
 }
+
+void change_com (int id) { //pour l'instant, je fais que un a la fois, pour ajouter comme pour supprimer
+    
+    ofstream flux_new_repository("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/new_repository.txt");  //fichier d'écriture
+    ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
+    string action = demanderGeneral("Désirez-vous ajouter ou supprimer un commentaire ? ");
+    
+    if (action=="ajouter") {
+        string new_com = demanderGeneral("Nouveau commentaire : ");
+        string ligne;
+        while (getline(repository_in, ligne)) {         //je lis tout le fichier
+            if (ligne[0]-'0' != id) {
+                flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
+            }
+            else {
+                Task task_to_change = text_to_task(ligne);
+                task_to_change.comments+='|';
+                task_to_change.comments+=new_com;
+                flux_new_repository<<task_to_change.write()<<endl;
+            }
+        }
+        remove ("task_repository.txt");
+        char oldname[]="new_repository.txt";
+        char newname[]="task_repository.txt";
+        rename(oldname,newname);
+    };
+    if (action=="supprimer") {    //ça marche mais j'aurais aimé réussir à en supprimer plusieurs d'un coup
+        string ligne;
+        while (getline(repository_in, ligne)) {         //je lis tout le fichier
+            if (ligne[0]-'0' != id) {
+                flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
+            }
+            else {
+                Task task_to_change = text_to_task(ligne);
+                string com = task_to_change.comments;
+                string new_com;
+                cout << "Les commentaires sont : " <<endl;
+                print_com(task_to_change.comments);
+                int del_com = stoi(demanderGeneral("Quel commentaire désirez-vous supprimer (son numéro)? "));
+                int compt_delim = 1;
+                int pos_com=0;
+                int len = com.length();
+                while (pos_com<len) {
+                    if (com[pos_com] == '|') {
+                        if (compt_delim==del_com) {
+                            pos_com+=1;
+                            while (pos_com<len and com[pos_com]!='|') pos_com+=1;
+                            compt_delim+=1;
+                        }
+                        if (pos_com<len) {//si le del_com était le dernier, alors on sort du while précédent en dehors de com et faut rien faire
+                            new_com+='|';
+                            pos_com+=1;
+                            compt_delim+=1;
+                        }
+                    }
+                    else {
+                        new_com+=com[pos_com];
+                        pos_com+=1;
+                    }
+                }         
+                task_to_change.comments=new_com;
+                flux_new_repository<<task_to_change.write()<<endl;
+                cout << "Le commentaire "<< del_com << " a bien été supprimé."<<endl;
+            }
+        }
+        remove ("task_repository.txt");
+        char oldname[]="new_repository.txt";
+        char newname[]="task_repository.txt";
+        rename(oldname,newname);
+    };
+}
+
 
 void delete_task (int id) {
     ofstream flux_new_repository("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/new_repository.txt");  //fichier d'écriture, créé vide sur le moment

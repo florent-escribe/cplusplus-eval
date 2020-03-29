@@ -60,6 +60,7 @@ class Task {
         Status status;
         int progress;
         string sub_task;
+        string comments;
 
         //pour les suivants, grand array avant de savoir faire des strings
         //string* com;
@@ -70,7 +71,7 @@ class Task {
         string get_descr ();
 
         Task (int id_in, string title_in, string descr_in, Date date_debut = Date(), Date date_fin = Date(),
-              Priority prio = Priority(), Status sta = Status(), int prog = 0, string sub_ta = "");
+              Priority prio = Priority(), Status sta = Status(), int prog = 0, string sub_ta = "", string com = "");
         string write ();
 
         //tout ce qui suit est idiot, completement inutile, on peut juste affecter directement
@@ -116,6 +117,7 @@ void change_priority (int id);
 void change_status (int id);
 void change_progress (int id);
 void change_sub_task (int id);
+void change_com (int id);
 void delete_task (int id);
 bool exist_task (int id);
 bool est_dedans (int x, int* t, int len);
@@ -130,4 +132,6 @@ string demanderModifiable ();*/
 string demanderGeneral (string question);
 int demanderId ();
 Date demanderDate ();
+
+void print_com (string com);
 

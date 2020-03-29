@@ -1,8 +1,9 @@
 on écrit les tâches dans task_repository sous la forme 0_id ; 1_title ; 2_descr ; 3_date_creation ; 4_date_end ; 5_priority ;
 						       6_status ; 7_progress ; 8_sous-tâches ; 9_com
 
+J'aurais du faire des classes pour ss tache et com.
 Pour les sous-tâches, je fais une string où les identifiants sont séparés par des espaces : "id1 id2 id3"
-
+Pour les com, une string, séparés par des '|'
 
 arguments d'entrée : indices
 0 : ack
@@ -36,10 +37,9 @@ ATTENTION: se débrouiller pour qu'il ny ait pas de ";" dans les requêtes des g
 
 1. Demande de l'action
 
-	amélioration : Pour tous les demandeX() qui renvoient un string, en faire un seul qui prend en argument la question en string
 	
 	Si "create":
-		demande du titre, de la descript, du status, de la priorité, et on crée la tâche		IL MANQUE LES SS-TACHES !!!!!
+		demande du titre, de la descript, du status, de la priorité, des ss tâches, des com, et on crée la tâche
 	Si "change":
 		demander l'id de la tâche à changer
 		tester l'existence de cette tâche, si oui on avance, sinon msg d'erreur
@@ -63,16 +63,12 @@ ATTENTION: se débrouiller pour qu'il ny ait pas de ";" dans les requêtes des g
 
 qd on crée une sous-tache, rajouter un test d'existence de la ss tache
 
-ATTENTION quand je rajouterai com et ss taches, faudra faire gaffe aux longueurs des tabl dans le convertisseur txt/task
 
 
 A plusieurs reprises, j'ai besoin de découper une string contenant plusieurs éléments séparés par un certain marqueur.
 Pour ça, je parcours la string et stocke toutes les positions de ce marqueur dans un tableau (je connais le nbr exact de marqueur à
 chaque fois), puis j'extrais chaque substring avec substr()
 
-A RAJOUTER :
-les comms-> si on fait des tableaux, faire gaffe à avoir des marqueurs différents des séparateurs d'attributs
-				changer les nombres d'attributs dans les convertisseurs txt/task
 
 
 Pour la partie change, demander si cest possible de faire un tableau avec des instructions, comme ça la partie à modifier correspond à un
