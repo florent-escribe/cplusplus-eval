@@ -4,6 +4,8 @@ using namespace std;
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>    //pour any_of dans change sub task suppr
+
 
 
 int main () {
@@ -14,7 +16,9 @@ int main () {
         string description = demanderGeneral("Description : ");
         Priority prio = demanderGeneral("Priorité : ");
         Status sta = demanderGeneral("Status : ");
-        Task task = Task (get_id(),titre,description,Date(),Date(),prio,sta);   //METTRE LES DATES A LA FIN DANS LES ARGS pour pouvoir ne pas les écrire ici
+        string sub_ta = demanderGeneral("Sous-tâches (identifiants séparés par des espaces): ");
+        Task task = Task (get_id(),titre,description,Date(),Date(),prio,sta,0,sub_ta);   //METTRE LES DATES A LA FIN DANS LES ARGS pour pouvoir ne pas les écrire ici
+        // je dois réarranger les arguments du constructeur pour mettre tous les vides à la fin
         write_task(task);
     };
     if ( action == "change" ){
@@ -61,6 +65,7 @@ int main () {
             if (element=="priorité") change_priority(id);
             if (element=="status") change_status(id);     
             if (element=="progrès") change_progress(id);
+            if (element=="sous-tâches") change_sub_task(id);
         }
         else cout << "La tâche " << id << " n'existe pas." << endl;
     };
@@ -69,6 +74,7 @@ int main () {
         if (exist_task(id)) delete_task (id);
         else cout << "La tâche " << id << " n'existe pas." << endl;            
     };
+    if (action=="show"){}
 }
 
 

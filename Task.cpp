@@ -19,7 +19,7 @@ string Task::get_descr () {return descr;}
 
 
 //Je rajoute des arg potentiellement vides
-Task::Task (int id_in, string title_in, string descr_in, Date date_debut, Date date_fin, Priority prio, Status sta, int prog) {
+Task::Task (int id_in, string title_in, string descr_in, Date date_debut, Date date_fin, Priority prio, Status sta, int prog, string sub_ta) {
     //les dates de création/fin sont initialisées à auj par défaut à la création
     id=id_in;
     title=title_in;
@@ -30,6 +30,7 @@ Task::Task (int id_in, string title_in, string descr_in, Date date_debut, Date d
     date_creation=date_debut;
     date_end=date_fin;
     progress=prog;
+    sub_task=sub_ta;
 }
 
 string Task::write () {
@@ -48,6 +49,8 @@ string Task::write () {
     ligne+=status.write_status();
     ligne+=";";
     ligne+=to_string(progress);
+    ligne+=";";
+    ligne+=sub_task;
     return ligne;
 }
 
@@ -59,8 +62,8 @@ void Task::print_task () {
     date_end.print_date();
     priority.print_priority();
     status.print_status();
-    cout << "Progress : " << progress;
-    cout << endl;
+    cout << "Progress : " << progress << endl;
+    cout << "Sous-tâches : " << sub_task << endl;
 }
 
 void Task::change_start_date (Date d) {date_creation=d;}
