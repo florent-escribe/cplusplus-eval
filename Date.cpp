@@ -24,19 +24,12 @@ int Date::give_day () {return day;}
 int Date::give_month () {return month;}
 int Date::give_year () {return year;}
 
-void Date::set_date (Date d) {
-    day=d.give_day();
-    month=d.give_month();
-    year=d.give_year();
-}
 
 string Date::write_date () {
     return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
 }
 
-
-// c'est testé, ça marche
-Date text_to_date (string date) {   // date est de la forme j ou jj/m ou mm/yyyy -> 4possiblités, on brute-force à la main
+Date text_to_date (string date) {
 
     int pos_slash [2];              // tableau de deux entiers : les positions des deux slashs
     int compt_slash = 0;            // compteur du nbr de slash parcourus

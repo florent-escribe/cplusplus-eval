@@ -1,9 +1,4 @@
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <algorithm>    //pour any_of dans change sub task suppr
-
 using namespace std;
 
 
@@ -19,19 +14,18 @@ class Date {
         int give_day ();
         int give_month ();
         int give_year ();
-        void set_date (Date d);
         string write_date ();
 };
 
 Date text_to_date (string date);
 
-
-class Status { //attention, il faudra pouvoir changer sta depuis task, donc soit en public, soit donner l'autorisation
-    string tab_stati [5] = {"open", "closed", "in progress", "boring", "interesting"};    //ou alors une fonction status valide, dans le genre
-    string sta;
+//Dans Status.cpp
+class Status {
+    string tab_stati [5] = {"open", "closed", "in progress", "forgotten long ago", "friendly"};    //ou alors une fonction status valide, dans le genre
     public :
+        string sta;
         Status ();
-        Status (string status_in);  //potentiellement inutile
+        Status (string status_in);
         void print_status ();
         string get_status ();
         void set_status (Status s);
@@ -40,8 +34,8 @@ class Status { //attention, il faudra pouvoir changer sta depuis task, donc soit
 
 class Priority {  //attention, il faudra pouvoir changer sta depuis task, donc soit en public, soit donner l'autorisation
     string tab_priorities [5] = {"no problem", "think about it", "kinda pressing but ok", "get to work now", "urgent"};
-    string prio;
     public :
+        string prio;    //c'est plus pratique en public pour y accéder facilement, pas besoin de le protéger
         Priority (string priority_in);  //potentiellement inutile
         Priority ();
         void print_priority ();
@@ -54,17 +48,13 @@ class Task {
     string title;
     string descr;    
     public :
-        Date date_creation; //elle est initialisée tt seule à auj grace à mon constructeur vide
-        Date date_end;  //pb : elle est aussi initialisée à aujourd'hui
+        Date date_creation;
+        Date date_end;
         Priority priority;
         Status status;
         int progress;
         string sub_task;
         string comments;
-
-        //pour les suivants, grand array avant de savoir faire des strings
-        //string* com;
-        //Task* sub_tasks;
 
         int get_task_id ();
         string get_title ();
@@ -74,38 +64,11 @@ class Task {
               Priority prio = Priority(), Status sta = Status(), int prog = 0, string sub_ta = "", string com = "");
         string write ();
 
-        //tout ce qui suit est idiot, completement inutile, on peut juste affecter directement
-
-        void change_start_date (Date d);
-        void set_end_date (Date d);             
-
-        void change_descr (string d);
-        void change_status (Status s);
-        void change_progress (float pc);
-        void change_priority (Priority prio);
-
-        void add_commentary ();
-        void add_sub_task (Task subtask);
-
         void print_task ();
         void print_date_creation ();
         void print_end_date ();
 };
 
-/*
-vector<string> split(const string& s, char delimiter)
-//Fonction retournant un vector<string> a partir d'un string en spératant a chaque caractère delimiter
-{
-   vector<string> tokens;
-   string token;
-   istringstream tokenStream(s);
-   while (getline(tokenStream, token, delimiter))
-   {
-      tokens.push_back(token);
-   }
-   return tokens;
-};
-*/
 
 //dans le fichier "fichier_texte.cpp"
 
@@ -135,3 +98,7 @@ Date demanderDate ();
 
 void print_com (string com);
 
+//3 fois la meme chose, c'est juste l'attribut testé qui change.
+void show_id (int id);
+void show_priority (Priority prio);
+void show_status (Status sta);

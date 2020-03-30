@@ -6,55 +6,6 @@ using namespace std;
 #include <vector>
 #include <sstream>
 
-/*
-string demanderAction () {
-    cout << "Quelle action désirez vous accomplir ? ";
-    string action;
-    getline(cin,action);
-    cout<<endl;
-    return action;
-}
-
-string demanderTitre () {
-    cout << "Titre : ";
-    string titre;
-    getline(cin,titre);
-    cout<<endl;
-    return titre;
-}
-
-string demanderDescription () {
-    cout << "Description : ";
-    string description;
-    getline(cin,description);
-    cout<<endl;
-    return description;
-}
-
-Priority demanderPriority () {
-    cout << "Priorité : ";
-    string prio;
-    getline(cin,prio);
-    cout<<endl;
-    return Priority(prio);
-}
-
-Status demanderStatus () {
-    cout << "Status : ";
-    string status;
-    getline(cin,status);
-    cout<<endl;
-    return Status(status);
-}
-
-string demanderModifiable () {
-    cout << "Element à modifier : ";
-    string modif;
-    getline(cin,modif);
-    cout<<endl;
-    return modif;
-}
-*/
 
 string demanderGeneral (string question) {
     cout << question ;
@@ -93,8 +44,8 @@ void print_com (string com) {
     com+='|';                              // facilite la décomposition à la fin
     int len = com.length();                // longueur de la string
     int compt_delim = 0;                   // compteur du nbr de "|" parcourus
-    int pos_com = 0;                       // position dans text
-    while (pos_com<len) {                  // je récupère le nombre de "|", cad le nbr de com
+    int pos_com = 0;                       // position dans com
+    while (pos_com<len) {                  // je récupère le nombre de "|", cad le nbr de com +1
         if (com[pos_com]=='|') {
             compt_delim+=1;
         }
