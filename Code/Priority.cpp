@@ -9,9 +9,6 @@ Priority::Priority (string priority_in) {
         if (priority_in == tab_priorities [i]) {prio=priority_in; i=6;}
         else {i+=1;};
     };
-    if (i==5) {
-        cout << "\"" << priority_in << "\" is not an official priority" << endl;
-    };
 }
 
 Priority::Priority () {}

@@ -14,7 +14,7 @@ Task::Task (int id_in, string title_in, string descr_in, Date date_debut, Date d
     descr=descr_in;
     status=sta;
     priority=prio;
-    progress=0;
+    progress=0;     // ce constructeur est uniquement utilisé pour créer de nonuvelle tâche, donc de progression nulle
     date_creation=date_debut;
     date_end=date_fin;
     progress=prog;
@@ -41,7 +41,3 @@ void Task::print_task () {
     cout << "Commentaires :"<<endl;
     print_com(comments);
 }
-
-
-void Task::print_date_creation () {date_creation.print_date();}
-void Task::print_end_date () {date_end.print_date();}

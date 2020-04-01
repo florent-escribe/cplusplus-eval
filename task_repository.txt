@@ -1,7 +1,3 @@
-2;ges;hse;29/3/2020;29/3/2020;no problem;open;55; 12 15;
-13;gr;gt;29/3/2020;29/3/2020;no problem;open;3;;|whalla ça marche|c'est le 1|c'est le 2
-14;gr;hhhhh;29/3/2020;29/3/2020;no problem;closed;36;;
-15;aaaaaaaaa;zzzzzzzzzzz;29/3/2020;14/1/1555;no problem;forgotten long ago;4;13 14 ;
-16;azer;tyui;29/3/2020;29/3/2020;think about it;closed;5;12 13;|test
-17;titre;desc;29/3/2020;34/34/3566;get to work now;friendly;0;2 13 14;|Le test n°1|Le deuxième commentaire !!
-18;titretz;descrtpi;30/3/2020;30/3/2020;kinda pressing but ok;in progress;0;12 15;|1234|fresgtdrhytfu|sjiv
+11;lire;finir le cycle de fondation;2/2/2020;19/3/2020;no problem;closed;100;12;|lire les tomes dans l'ordre|les acheter en anglais
+14;sortir le chien;aller au parc;27/3/2020;27/3/2020;think about it;closed;100;;|prendre la laisse
+22;faire les courses;eau, pain, fromage;31/3/2020;1/4/2020;no problem;open;0;14 15;|eau évian|pain frais

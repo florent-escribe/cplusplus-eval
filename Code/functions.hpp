@@ -8,12 +8,9 @@ class Date {
     int month;
     int year;
     public :
-        void print_date ();
         Date ();
         Date (int d, int m, int y);
-        int give_day ();
-        int give_month ();
-        int give_year ();
+        void print_date ();
         string write_date ();
 };
 
@@ -27,8 +24,6 @@ class Status {
         Status ();
         Status (string status_in);
         void print_status ();
-        string get_status ();
-        void set_status (Status s);
         string write_status ();
 };
 
@@ -56,18 +51,32 @@ class Task {
         string sub_task;
         string comments;
 
+        Task (int id_in, string title_in, string descr_in, Date date_debut = Date(), Date date_fin = Date(),
+              Priority prio = Priority(), Status sta = Status(), int prog = 0, string sub_ta = "", string com = "");
+
         int get_task_id ();
         string get_title ();
         string get_descr ();
 
-        Task (int id_in, string title_in, string descr_in, Date date_debut = Date(), Date date_fin = Date(),
-              Priority prio = Priority(), Status sta = Status(), int prog = 0, string sub_ta = "", string com = "");
-        string write ();
-
         void print_task ();
-        void print_date_creation ();
-        void print_end_date ();
+
+        string write ();
 };
+
+
+//Dans User_interface :
+
+string demanderGeneral (string question);
+int demanderId ();
+Date demanderDate ();
+
+void print_com (string com);
+
+//3 fois la meme chose, c'est juste l'attribut testé qui change.
+void show_id (int id);
+void show_priority (Priority prio);
+void show_status (Status sta);
+
 
 
 //dans le fichier "fichier_texte.cpp"
@@ -85,20 +94,3 @@ void delete_task (int id);
 bool exist_task (int id);
 bool est_dedans (int x, int* t, int len);
 
-//Dans User_interface :
-/*string demanderAction ();
-string demanderTitre ();
-string demanderDescription ();
-Priority demanderPriority ();
-Status demanderStatus ();
-string demanderModifiable ();*/
-string demanderGeneral (string question);
-int demanderId ();
-Date demanderDate ();
-
-void print_com (string com);
-
-//3 fois la meme chose, c'est juste l'attribut testé qui change.
-void show_id (int id);
-void show_priority (Priority prio);
-void show_status (Status sta);

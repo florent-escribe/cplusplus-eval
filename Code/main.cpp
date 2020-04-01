@@ -8,6 +8,7 @@ using namespace std;
 
 
 int main () {
+    cout<<endl;
     string action = demanderGeneral ("Quelle action désirez vous accomplir : create, change, delete, show ? ");
     if ( action =="create") {
         string titre = demanderGeneral("Titre (sans point virgule) : ");
@@ -27,6 +28,7 @@ int main () {
         Task task = Task (get_id(),titre,description,Date(),Date(),prio,sta,0,sub_ta,com);   //METTRE LES DATES A LA FIN DANS LES ARGS pour pouvoir ne pas les écrire ici
         // je dois réarranger les arguments du constructeur pour mettre tous les vides à la fin
         write_task(task);
+        cout << "La tâche a bien été créée." <<endl;
     };
     if ( action == "change" ){
         int id = demanderId();

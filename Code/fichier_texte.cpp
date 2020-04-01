@@ -7,9 +7,9 @@
 using namespace std;
 
 
-void write_task (Task task) {
+void write_task (Task task) {   //on écrit directement la tâche à la suite
 
-    ofstream flux_repository("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt", ios::app);
+    ofstream flux_repository("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt", ios::app); //fichier d'écriture
     flux_repository << task.get_task_id() <<";"<< task.get_title() <<";"<< task.get_descr() <<";"<< task.date_creation.write_date()
                     <<";"<< task.date_end.write_date() <<";"<< task.priority.write_priority() <<";"<< task.status.write_status()
                     <<";"<< task.progress << ";" << task.sub_task << ";" << task.comments << endl;
@@ -17,8 +17,8 @@ void write_task (Task task) {
 
 int get_id () {
 
-    ofstream flux_identifiant_out ("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/new_identifiant.txt");
-    ifstream flux_identifiant_in ("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/identifiant.txt");
+    ofstream flux_identifiant_out ("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/new_identifiant.txt"); // fichier d'écriture
+    ifstream flux_identifiant_in ("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/identifiant.txt");      // fichier de lecture
     int id;
     flux_identifiant_in >> id;
     flux_identifiant_out << id+1;
@@ -32,10 +32,13 @@ int get_id () {
 }
 
 
-Task text_to_task (string text) {   //text est une ligne du repository
-    
-    text+=";";                              //facilite le remplissage à la fin
-    int len = text.length();                //longueur de la string
+Task text_to_task (string text) {   // text est une ligne du repository
+
+    // Les attributs sont délimités par des ';'. Je vais stocker la position de chaque ';' dans le tableau pos_pt_vrg.
+    text+=";";                              // facilite le remplissage à la fin
+    // Je sais qu'il y aura exactement 10 ';' d'après la structure décrite dans la partie Fonctionnement détaillé 
+
+    int len = text.length();                // longueur de la string
     int pos_pt_vrg [10];
     int compt_pt_vrg = 0;                   // compteur du nbr de ";" parcourus
     int pos_text = 0;                       // position dans text
@@ -47,12 +50,15 @@ Task text_to_task (string text) {   //text est une ligne du repository
         pos_text+=1;
     }
 
-    string attributs [10];                   // on stocke les att ss forme de string. ATTENTION : pour l'instant que 9 élé, ça sera 10 avec les com
+    string attributs [10];                   // on stocke les att ss forme de string.
     attributs[0]=text.substr(0,pos_pt_vrg[0]);
-    for (int i=1; i<10; i+=1) {              //remplissage de attributs
+
+    //remplissage de attributs
+    for (int i=1; i<10; i+=1) {
         attributs[i]= text.substr(pos_pt_vrg[i-1]+1,pos_pt_vrg[i]-pos_pt_vrg[i-1]-1);
     }
 
+    //création de la tâche
     Task task = Task(stoi(attributs[0]), attributs[1], attributs[2], text_to_date(attributs[3]), text_to_date(attributs[4]),
                      Priority(attributs[5]), Status(attributs[6]), stoi(attributs[7]), attributs[8], attributs[9]);
     return task;
@@ -67,11 +73,12 @@ void change_end_date (int id) {
     ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
     string ligne;
     while (getline(repository_in, ligne)) {         //je lis tout le fichier
-        Task task = text_to_task(ligne);
-        if (task.get_task_id() != id) {
+        Task task = text_to_task(ligne);            //je crée la Task correspondante
+        if (task.get_task_id() != id) {             //cette ligne n'est pas concernée
             flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
         }
         else {
+            //cette ligne est la ligne concernée : je crée la Task correspondante, je la modifie puis je l'écris.
             Task task_to_change = text_to_task(ligne);
             task_to_change.date_end=d;
             flux_new_repository<<task_to_change.write()<<endl;
@@ -90,11 +97,12 @@ void change_priority (int id) {
     ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
     string ligne;
     while (getline(repository_in, ligne)) {         //je lis tout le fichier
-        Task task = text_to_task(ligne);
+        Task task = text_to_task(ligne);            //je crée la Task correspondante            
         if (task.get_task_id() != id) {
             flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
         }
         else {
+            //cette ligne est la ligne concernée : je crée la Task correspondante, je demande la nouvelle valeur, je modifie puis je l'écris.
             Task task_to_change = text_to_task(ligne);
             cout<< "La priorité actuelle est : " << task_to_change.priority.write_priority() <<endl;
             Priority p = demanderGeneral("Nouvelle priorité (no problem, think about it, kinda pressing but ok, get to work now, urgent): ");
@@ -115,11 +123,12 @@ void change_status (int id) {
     ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
     string ligne;
     while (getline(repository_in, ligne)) {         //je lis tout le fichier
-        Task task = text_to_task(ligne);
+        Task task = text_to_task(ligne);            //je crée la Task correspondante
         if (task.get_task_id() != id) {
             flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
         }
         else {
+            //cette ligne est la ligne concernée : je crée la Task correspondante, je demande la nouvelle valeur, je modifie puis je l'écris.
             Task task_to_change = text_to_task(ligne);
             cout << "Le status actuel est : " << task_to_change.status.write_status() << endl;
             Status s = demanderGeneral("Nouveau status (open, closed, in progress, forgotten long ago, friendly): ");
@@ -141,11 +150,12 @@ void change_progress (int id) {
     ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
     string ligne;
     while (getline(repository_in, ligne)) {         //je lis tout le fichier
-        Task task = text_to_task(ligne);
+        Task task = text_to_task(ligne);            //je crée la Task correspondante
         if (task.get_task_id() != id) {
             flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
         }
         else {
+            //cette ligne est la ligne concernée : je crée la Task correspondante, je demande la nouvelle valeur, je modifie puis je l'écris.
             Task task_to_change = text_to_task(ligne);
             cout << "Le progrès actuel est : " << task_to_change.progress << "%." << endl;
             int pr = stoi(demanderGeneral("Nouveau progrès : "));
@@ -168,11 +178,12 @@ void change_sub_task (int id) {
         ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
         string ligne;
         while (getline(repository_in, ligne)) {         //je lis tout le fichier
-            Task task = text_to_task(ligne);
+            Task task = text_to_task(ligne);            //je crée la Task correspondante
             if (task.get_task_id() != id) {
                 flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
             }
             else {
+                //cette ligne est la ligne concernée : je crée la Task correspondante, je modifie puis je l'écris.
                 Task task_to_change = text_to_task(ligne);
                 task_to_change.sub_task+=" ";
                 task_to_change.sub_task+=add_id;
@@ -191,11 +202,12 @@ void change_sub_task (int id) {
         ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
         string ligne;
         while (getline(repository_in, ligne)) {         //je lis tout le fichier
-            Task task = text_to_task(ligne);
+            Task task = text_to_task(ligne);            
             if (task.get_task_id() != id) {
                 flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
             }
             else {
+                //cette ligne est la ligne concernée : je crée la Task correspondante, j'affiche ce qui existe, je demande ce qu'il faut supprimer puis je recopie.
                 Task task_to_change = text_to_task(ligne);
                 string new_sub_task;
                 cout << "Les sous-tâches sont : " << task_to_change.sub_task << endl;
@@ -229,8 +241,8 @@ void change_com (int id) {
     
     if (action=="ajouter") {
         int nbr_com = stoi(demanderGeneral("Combien de commentaires ? "));
-        string com;
-        string com_in;
+        string com; // contiendra tous les nouveaux commentaires séparés par des '|'
+        string com_in;  // contient les nouveaux commentaires un à la fois, quand l'utilisateur les tape.
         for (int i=0;i<nbr_com;i+=1){
             cout << "Commentaire " << i+1 << " : ";
             getline(cin,com_in);
@@ -244,6 +256,7 @@ void change_com (int id) {
                 flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
             }
             else {
+                //cette ligne est la ligne concernée : je crée la Task correspondante, j'ajoute le nouveau commmentaire puis je l'écris.
                 Task task_to_change = text_to_task(ligne);
                 task_to_change.comments+=com;
                 flux_new_repository<<task_to_change.write()<<endl;
@@ -263,14 +276,16 @@ void change_com (int id) {
                 flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
             }
             else {
+                //cette ligne est la ligne concernée : je crée la Task correspondante, j'affiche les valeurs supprimables, je demande celle à supprimer, puis je recopie.
                 Task task_to_change = text_to_task(ligne);
                 string com = task_to_change.comments;
                 string new_com;
                 cout << "Les commentaires sont : " <<endl;
                 print_com(task_to_change.comments);
                 int del_com = stoi(demanderGeneral("Quel commentaire désirez-vous supprimer (son numéro)? "));
-                int compt_delim = 1;
-                int pos_com=0;
+                // affichage des commentaires existants : il faut décomposer une string selon les '|'
+                int compt_delim = 1;    // nombre de '|'
+                int pos_com=0;          // position dans les commentaires
                 int len = com.length();
                 while (pos_com<len) {
                     if (com[pos_com] == '|') {
@@ -279,8 +294,8 @@ void change_com (int id) {
                             while (pos_com<len and com[pos_com]!='|') pos_com+=1;
                             compt_delim+=1;
                         }
-                        if (pos_com<len) {//si le del_com était le dernier, alors on sort du while précédent en dehors de com et faut rien faire
-                            new_com+='|';
+                        if (pos_com<len) {// On vérifie que l'on n'est pas à la fin :
+                            new_com+='|'; // si le del_com était le dernier, alors on sort du while précédent en dehors de com et il ne faut rien faire.
                             pos_com+=1;
                             compt_delim+=1;
                         }
@@ -308,8 +323,9 @@ void delete_task (int id) {
     ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
     string ligne;
     while (getline(repository_in, ligne)) {         //je lis tout le fichier
-        if (ligne[0]-'0' != id) {                   //ça convertit un char en int
-            flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo
+        Task task = text_to_task(ligne);
+        if (task.get_task_id() != id) {
+            flux_new_repository << ligne << endl;   //je copie la ligne dans le nouveau repo uniquement si son identifiant n'est pas celui à supprimer.
         }
     }
     remove ("task_repository.txt");
@@ -336,49 +352,4 @@ bool est_dedans (int x, int* t, int len) {
         if (t[i]==x) return true;
     }
     return false;
-}
-
-void show_id (int id) {
-    ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
-    string ligne;
-    bool t = true;     //t = on n'a croisé personne
-    while (getline(repository_in,ligne) and t){
-        Task task = text_to_task(ligne);
-        if (task.get_task_id()==id) {
-            task.print_task();
-            cout<<endl;
-            t = false;
-        }
-    }
-    if (t) cout << "La tâche n°" << id << " n'existe pas."<<endl;
-}
-
-void show_priority (Priority prio) {
-    ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
-    string ligne;
-    bool t = true;  //t = on n'a croisé personne
-    while (getline(repository_in,ligne)){
-        Task task = text_to_task(ligne);
-        if (task.priority.prio==prio.prio) {
-            task.print_task();
-            cout<<endl;
-            t = false;
-        }
-    }
-    if (t) cout << "Aucune tâche de priorité " << prio.write_priority() <<endl;
-}
-
-void show_status (Status sta) {
-    ifstream repository_in("/mnt/c/Users/flore/Documents/GitHub/cplusplus-eval/task_repository.txt");       //fichier de lecture
-    string ligne;
-    bool t = true;  //t = on n'a croisé personne
-    while (getline(repository_in,ligne)){
-        Task task = text_to_task(ligne);
-        if (task.status.sta==sta.sta) {
-            task.print_task();
-            cout<<endl;
-            t = false;
-        }
-    }
-    if (t) cout << "Aucune tâche de status " << sta.write_status() <<endl;
 }

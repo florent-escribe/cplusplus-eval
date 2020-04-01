@@ -3,9 +3,9 @@ using namespace std;
 #include "functions.hpp"
 
 Date::Date () {
-    time_t now = time(0);
-    tm *ltm = localtime(&now);
-    year = 1900 + ltm->tm_year;
+    time_t now = time(0);       // on récupère l'heure locale
+    tm *ltm = localtime(&now);  // on met au bon format
+    year = 1900 + ltm->tm_year; // on décompose en jour mois année
     month = 1 + ltm->tm_mon;
     day = ltm->tm_mday;
 }
@@ -20,16 +20,13 @@ void Date::print_date () {
     cout << day << "/" << month << "/" << year << endl;
 }
 
-int Date::give_day () {return day;}
-int Date::give_month () {return month;}
-int Date::give_year () {return year;}
-
-
 string Date::write_date () {
     return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
 }
 
-Date text_to_date (string date) {
+Date text_to_date (string date) {   // date est sous la forme "day/month/year"
+
+    // Je recupère la position des '/' dans un tableau, je découpe date selon ces valeurs.
 
     int pos_slash [2];              // tableau de deux entiers : les positions des deux slashs
     int compt_slash = 0;            // compteur du nbr de slash parcourus
